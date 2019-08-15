@@ -18,6 +18,9 @@
         <h4>
             Retiro maximo: <small>${{account.monto_credito}}</small>
         </h4>
+        <h4 class="text-center text-danger">
+           El retiro de una cuenta de credito creará una comisión del 10%.
+        </h4>
     </div>
 </template>
 

@@ -15,7 +15,12 @@
                 <a class="btn-primary btn-left-rounded btn btn-xl text-white xl-btn" v-on:click="showFormRetiro" >Retirar</a>
             </div>
             <div class="col-4 offset-4 text-center" v-show="this.showRetiroForm">
-                <retiro-form></retiro-form>
+                <retiro-form
+                        :account="this.account"
+                        :debito="this.debit"
+                        :user="this.user"
+                        @setAccount="setAcount"
+                ></retiro-form>
             </div>
         </div>
         <div class="row mt-5">
@@ -23,7 +28,10 @@
                 <a class="btn-primary float-left btn-left-rounded btn btn-xl text-white xl-btn" v-on:click="showFormDeposito" >Depositar</a>
             </div>
             <div class="col-4 offset-4 text-center" v-show="this.showDepositoForm">
-                <deposito-form></deposito-form>
+                <deposito-form :account="this.account"
+                               :user="this.user"
+                               @setAccount="setAcount"
+                ></deposito-form>
             </div>
         </div>
         <div class="row" v-show="this.cancelButton">
@@ -58,6 +66,7 @@
           }
         },
         mounted(){
+
         },
         methods: {
             logout(){
@@ -84,8 +93,12 @@
                 this.showDepositoButton = true;
                 this.showRetiroButton = true;
                 this.cancelButton =false;
-
+            },
+            setAcount(emit){
+                this.account = emit.account;
+                this.emit('setAcount',emit);
             }
+
         }
     }
 </script>

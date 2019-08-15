@@ -6,7 +6,11 @@
       </h3>
     </div>
     <form-loggin-atm @showLoginForm="showLoginForm" v-show="showLogin"></form-loggin-atm>
-    <actions-user :debit="this.debito" :user="this.user" :account="this.fullaccount" v-show="!showLogin" @logout="logout"></actions-user>
+    <actions-user
+            :debit="this.debito" :user="this.user" :account="this.fullaccount" v-show="!showLogin"
+            @logout="logout"
+            @setAccount="setAcount"
+    ></actions-user>
   </div>
 </template>
 
@@ -47,8 +51,13 @@ export default {
           if (response.data.data.isLogged===false){
             this.user = {};
             this.showLogin = true;
+            this.account='';
+            this.fullaccount={};
           }
         })
+      },
+      setAcount(emit){
+        this.fullaccount = emit.account;
       }
   }
   }
