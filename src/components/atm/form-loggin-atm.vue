@@ -11,7 +11,7 @@
          <form class="form" v-on:submit="verifyPass" v-show="show">
              <div class="form-group">
                  <label for="pin">PIN</label>
-                 <input type="text" class="form-control" name="pin" id="pin" v-model="pin">
+                 <input type="password" class="form-control" name="pin" id="pin" v-model="pin">
                  <input type="submit" value="Enter" class="btn btn-primary float-right">
              </div>
          </form>
