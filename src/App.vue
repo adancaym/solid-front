@@ -9,7 +9,7 @@
     <actions-user
             :debit="this.debito" :user="this.user" :account="this.fullaccount" v-show="!showLogin"
             @logout="logout"
-            @setAccount="setAcount"
+            @setAccount="setAccount"
     ></actions-user>
   </div>
 </template>
@@ -56,7 +56,7 @@ export default {
           }
         })
       },
-      setAcount(emit){
+      setAccount(emit){
         this.fullaccount = emit.account;
       }
   }

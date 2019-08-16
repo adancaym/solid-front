@@ -19,7 +19,7 @@
                         :account="this.account"
                         :debito="this.debit"
                         :user="this.user"
-                        @setAccount="setAcount"
+                        @setAccount="setAccount"
                 ></retiro-form>
             </div>
         </div>
@@ -30,7 +30,7 @@
             <div class="col-4 offset-4 text-center" v-show="this.showDepositoForm">
                 <deposito-form :account="this.account"
                                :user="this.user"
-                               @setAccount="setAcount"
+                               @setAccount="setAccount"
                 ></deposito-form>
             </div>
         </div>
@@ -94,11 +94,9 @@
                 this.showRetiroButton = true;
                 this.cancelButton =false;
             },
-            setAcount(emit){
-                this.account = emit.account;
-                this.emit('setAcount',emit);
+            setAccount(emit){
+                this.$emit('setAccount',emit);
             }
-
         }
     }
 </script>

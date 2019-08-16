@@ -30,25 +30,26 @@
                 event.preventDefault();
                 if (this.account.maximo >= this.retiro) {
                     this.mensajes = '';
-                    console.log('retiro');
-                    if (this.debito){
-                        console.log('retiro debito');
-                        //axios a llamada retiro
-                    }else{
-
-                        //axios a llamada retiro credito
-                        console.log('retiro credito');
+                    if (this.retiro !=0){
+                        let data = new FormData();
+                        data.append('iduser',this.user.iduser);
+                        data.append('idaccount',this.account.idaccount);
+                        data.append('movement',this.retiro);
+                        if (this.debito){
+                            axios.post('http://solid/account/retiroDebito',data).then((response)=>{
+                                this.$emit('setAccount',response.data.data);
+                            });
+                        }else{
+                            axios.post('http://solid/account/retiroCredito',data).then((response)=>{
+                                this.$emit('setAccount',response.data.data);
+                            });
+                        }
+                    } else{
+                        this.mensajes = 'No puedes retirar 0';
                     }
-
-                    //axios a llamada obtenemos los nuevos paramaetros de la cuenta
-                    let param = {
-                        account: this.account
-                    };
-                    this.$emit('setAcount',param);
                 }else{
                     this.mensajes = 'El retiro sobre pasa el máximo a retirar';
                 }
-
             }
         }
     }
